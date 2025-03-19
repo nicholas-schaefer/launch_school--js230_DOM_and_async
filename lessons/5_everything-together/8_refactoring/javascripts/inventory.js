@@ -102,7 +102,7 @@ var inventory;
       this.update($item);
     },
 
-    //TODO
+    //fixed
     bindEvents: function() {
       document.querySelector('#add_item').addEventListener("click", this.newItem.bind(this));
 
