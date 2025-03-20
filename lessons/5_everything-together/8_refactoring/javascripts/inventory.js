@@ -11,11 +11,16 @@ var inventory;
       document.querySelector("#order_date").textContent = date.toUTCString();
     },
 
-    //TODO: remove to remove, also html?
+    //fixed
     cacheTemplate: function() {
-      // document.querySelector("#inventory_item");
-      var $iTmpl = $("#inventory_item").remove();
-      this.template = $iTmpl.html();
+      var inventoryItem = document.querySelector("#inventory_item");
+      var iTmpl = inventoryItem.innerHTML;
+      inventoryItem.remove();
+
+      this.template = iTmpl;
+
+      // var $iTmpl = $("#inventory_item").remove();
+      // this.template = $iTmpl.html();
     },
 
     //ok
@@ -32,7 +37,7 @@ var inventory;
       return item;
     },
 
-    //TODO: might not be needed, TBD
+    //TODO: fixed
     remove: function(idx) {
       this.collection = this.collection.filter(function(item) {
         return item.id !== idx;
@@ -55,21 +60,23 @@ var inventory;
 
     //TODO:
     update: function($item) {
-      var id = this.findID($item),
-          item = this.get(id);
+      var id = this.deprecatedFindID($item)
+      var item = this.get(id);
 
       item.name = $item.find("[name^=item_name]").val();
       item.stock_number = $item.find("[name^=item_stock_number]").val();
       item.quantity = $item.find("[name^=item_quantity]").val();
     },
 
-    //TODO:
+    //TODO: fixed
     newItem: function(e) {
       e.preventDefault();
-      var item = this.add(),
-          $item = $(this.template.replace(/ID/g, item.id));
+      var item = this.add()
+      document.querySelector("#inventory").insertAdjacentHTML('beforeend', this.template.replace(/ID/g, item.id));
+      // var item = this.add();
+      // var $item = $(this.template.replace(/ID/g, item.id));
 
-      $("#inventory").append($item);
+      // $("#inventory").append($item);
     },
 
     //TODO
@@ -83,16 +90,19 @@ var inventory;
     },
 
     //TODO
-    findID: function($item) {
+    deprecatedFindID: function($item) {
       return +$item.find("input[type=hidden]").val();
     },
 
     //TODO
     deleteItem: function(e) {
       e.preventDefault();
-      var $item = this.findParent(e).remove();
 
-      this.remove(this.findID($item));
+      var item = (e.target).closest("tr");
+      var itemID = item.querySelector("input[type=hidden]").value;
+      item.remove();
+      this.remove(itemID);
+
     },
 
     //TODO
@@ -119,9 +129,6 @@ var inventory;
           this.updateItem.call(this, e);
         }
       })
-      // $("#add_item").on("click", $.proxy(this.newItem, this));
-      // $("#inventory").on("click", "a.delete", $.proxy(this.deleteItem, this));
-      // $("#inventory").on("blur", ":input", $.proxy(this.updateItem, this));
     },
 
     //ok
