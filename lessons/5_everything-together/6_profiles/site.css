@@ -119,14 +119,18 @@ footer li a.instagram { background-position: 0 -138px; }
   border-style: solid;
   opacity: 0;
   background-color: orange;
-  transition: all .5s ease-in;
+  transition: all 1s ease-in;
 }
 
 #modal.fade-in {
   /* transition: opacity 1 2s; */
   background-color: yellow;
-
   opacity: 1
+}
+
+.overlay{
+  background-color: lightgreen;
+  opacity: .5;
 }
 
 

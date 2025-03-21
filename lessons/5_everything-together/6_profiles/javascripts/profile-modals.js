@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", (event) =>{
         this.modalContainer.append(div);
 
         setTimeout(()=>div.classList.add("fade-in"), 0)
-        setTimeout(()=>document.querySelector('main').classList.add("overlay"), 0)
+        setTimeout(()=>document.querySelector('body').classList.add("overlay"), 0)
 
         // div.classList.add("fade-in")
       }
