@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <title>your page title goes here</title>
+    <meta charset='utf-8'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"
+        integrity="sha512-E1dSFxg+wsfJ4HKjutk/WaCzK7S2wv1POn1RRPGh8ZK+ag9l244Vqxji3r6wgz9YBf6+vhQEYJZpSjqWFPg9gg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./javascripts/app.js"></script>
+</head>
+
+<body>
+</body>
+<div id="articles">
+    <script id="post" type="text/x-handlebars">
+        <article>
+          <h1>{{title}}</h1>
+          <p><time>Posted on {{published}}</time></p>
+          <p>{{{body}}}</p>
+          <ul>
+            {{#each tags}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
+
+        </article>
+    </script>
+</div>
+
+</html>
