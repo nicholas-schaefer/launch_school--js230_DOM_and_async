@@ -18,12 +18,13 @@
           <h1>{{title}}</h1>
           <p><time>Posted on {{published}}</time></p>
           <p>{{{body}}}</p>
+          {{#if tags}}
           <ul>
             {{#each tags}}
             <li>{{this}}</li>
             {{/each}}
           </ul>
-
+          {{/if}}
         </article>
     </script>
 </div>
